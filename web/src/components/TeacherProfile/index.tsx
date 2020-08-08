@@ -42,7 +42,10 @@ const TeacherProfile: React.FC<TeacherProfileProps> = ({ class_ }) => {
       <footer>
         <p>
           Preço por hora:
-          <strong>{class_.cost}</strong>
+          <strong>
+            {class_.cost}
+            €
+          </strong>
         </p>
         <a
           onClick={createNewConnection}
