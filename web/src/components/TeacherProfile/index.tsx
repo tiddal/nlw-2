@@ -44,7 +44,12 @@ const TeacherProfile: React.FC<TeacherProfileProps> = ({ class_ }) => {
           Preço por hora:
           <strong>{class_.cost}</strong>
         </p>
-        <a onClick={createNewConnection} href={`https://wa.me/${class_.user.whatsApp}`} target="_blank" rel="noreferrer">
+        <a
+          onClick={createNewConnection}
+          href={`https://wa.me/${class_.user.whatsApp}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={whatsAppIconSource} alt="whatsapp" />
           Entrar em contacto
         </a>
