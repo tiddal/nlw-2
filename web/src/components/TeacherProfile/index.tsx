@@ -3,30 +3,54 @@ import React from 'react';
 import Container from './styles';
 
 import whatsAppIconSource from '../../assets/images/icons/whatsapp.svg';
+import api from '../../services/api';
 
-const TeacherProfile: React.FC = () => (
-  <Container>
-    <header>
-      <img src="https://avatars1.githubusercontent.com/u/29706250?s=460&u=58529a9cff4532998bb9d6546dd998eedc500442&v=4" alt="Zé Pedro Resende" />
-      <div>
-        <strong>Zé Pedro Resende</strong>
-        <span>Física</span>
-      </div>
-    </header>
-    <p>
-      Desenvolvedor
-    </p>
-    <footer>
+interface TeacherProfileProps {
+  class_: {
+    id: string;
+    cost: number;
+    subject: string;
+    user: {
+      name: string;
+      avatar: string;
+      whatsApp: string;
+      bio: string;
+      id: string;
+    };
+  };
+}
+
+const TeacherProfile: React.FC<TeacherProfileProps> = ({ class_ }) => {
+  function createNewConnection() {
+    api.post('/connections', {
+      userId: class_.user.id,
+    });
+  }
+
+  return (
+    <Container key={class_.id}>
+      <header>
+        <img src={class_.user.avatar} alt={class_.user.name} />
+        <div>
+          <strong>{class_.user.name}</strong>
+          <span>{class_.subject}</span>
+        </div>
+      </header>
       <p>
-        Preço por hora:
-        <strong>50,00€</strong>
+        {class_.user.bio}
       </p>
-      <button type="button">
-        <img src={whatsAppIconSource} alt="whatsapp" />
-        Entrar em contacto
-      </button>
-    </footer>
-  </Container>
-);
+      <footer>
+        <p>
+          Preço por hora:
+          <strong>{class_.cost}</strong>
+        </p>
+        <a onClick={createNewConnection} href={`https://wa.me/${class_.user.whatsApp}`} target="_blank" rel="noreferrer">
+          <img src={whatsAppIconSource} alt="whatsapp" />
+          Entrar em contacto
+        </a>
+      </footer>
+    </Container>
+  );
+};
 
 export default TeacherProfile;

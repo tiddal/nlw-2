@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled.header`
   display: flex;
   flex-direction: column;
   background-color: var(--color-primary);
@@ -17,6 +17,14 @@ const Content = styled.div`
   color: var(--color-title-in-primary);
   strong {
     font: 700 3.6rem Archivo;
+  }
+  p {
+      max-width: 30rem;
+      font-size: 1.6rem;
+      line-height: 2.6rem;
+      color: var(--color-text-in-primary);
+      margin-top: 2.4rem;
+      margin-bottom: 6.4rem;
   }
 
   @media(min-width: 700px){
@@ -48,7 +56,7 @@ const TopBar = styled.div`
   }
   a{
     height: 3.2rem;
-    transition: opacity .2s ease;
+    transition: opacity .3s ease;
     :hover {
       opacity: 0.6;
     }

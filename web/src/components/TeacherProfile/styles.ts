@@ -47,7 +47,7 @@ const Container = styled.article`
       font-size: 1.6rem;
       display: block;
     }
-    button {
+    a {
       width: 20rem;
       height: 5.6rem;
       background-color: var(--color-secondary);
@@ -60,6 +60,7 @@ const Container = styled.article`
       align-items: center;
       justify-content: space-evenly;
       transition: background .3s ease;
+      text-decoration: none;
       :hover {
         background-color: var(--color-secondary-dark);
       }

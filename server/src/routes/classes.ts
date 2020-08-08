@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { createClassController } from "../useCases/CreateClass";
-import { getClassesController } from "../useCases/GetClasses";
+import { filterClassesController } from "../useCases/FilterClasses";
 
 const classes = Router();
 
@@ -9,7 +9,7 @@ classes.post('/classes', (request, response) => {
 });
 
 classes.get('/classes', (request, response) => {
-  return getClassesController.handle(request, response);
+  return filterClassesController.handle(request, response);
 });
 
 export { classes };

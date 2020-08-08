@@ -19,37 +19,35 @@ const Form = styled.form`
   margin-top: 3.2rem;
   display: grid;
   gap: 1.4rem;
-  label {
-    position: relative;
-    span {
-      color: var(--color-text-in-primary);
-      font-size: 1.4rem;
+  label span {
+    color: var(--color-text-in-primary);
+  }
+  button {
+    width: 100%;
+    height: 5.6rem;
+    background-color: var(--color-secondary);
+    color: var(--color-button-text);
+    border: 0;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font: 700 1.6rem Archivo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration:none;
+    transition: background .3s ease;
+    margin-top: 3.2rem;
+    @media(min-width: 700px){
+      margin-top: 0;
+      align-self: end;
     }
-    input {
-      width: 100%;
-      height: 5.6rem;
-      margin-top: 0.8rem;
-      border-radius: 0.8rem;
-      background-color: var(--color-input-background);
-      border: 1px solid var(--color-line-in-white);
-      outline: 0;
-      padding: 0 1.6rem;
-      font: 1.6rem Archivo;
-    }
-    :focus-within::after {
-      width: calc(100% - 3.2rem);
-      height: 2px;
-      content: '';
-      background-color: var(--color-primary-light);
-      position: absolute;
-      left: 1.6rem;
-      right: 1.6rem;
-      bottom: 0;
+    :hover {
+      background-color: var(--color-secondary-dark);
     }
   }
 
   @media(min-width: 700px){
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     margin-top: 0;
     position: absolute;
     bottom: -28px;

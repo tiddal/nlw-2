@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import logoImageSource from '../../assets/images/logo.svg';
@@ -14,37 +14,50 @@ import {
   Lead,
   Hero, Connections, CTA,
 } from './styles';
+import api from '../../services/api';
 
-const Landing: React.FC = () => (
-  <Container>
-    <Content>
-      <Logo>
-        <img src={logoImageSource} alt="logo" />
-        <Lead>
-          A sua plataforma de estudos online
-        </Lead>
-      </Logo>
-      <Hero>
-        <img src={heroImageSource} alt="hero shot" />
-      </Hero>
-      <CTA>
-        <Link to="/study">
-          <img src={studyIconSource} alt="study" />
+const Landing: React.FC = () => {
+  const [totalConnections, setTotalConnections] = useState(0);
+
+  useEffect(() => {
+    api.get('connections').then(((response) => {
+      setTotalConnections(response.data.total);
+    }));
+  }, []);
+
+  return (
+    <Container>
+      <Content>
+        <Logo>
+          <img src={logoImageSource} alt="logo" />
+          <Lead>
+            A sua plataforma de estudos online
+          </Lead>
+        </Logo>
+        <Hero>
+          <img src={heroImageSource} alt="hero shot" />
+        </Hero>
+        <CTA>
+          <Link to="/study">
+            <img src={studyIconSource} alt="study" />
+            {' '}
+            Estudar
+          </Link>
+          <Link to="/teach">
+            <img src={classesIconSource} alt="classes" />
+            Ensinar
+          </Link>
+        </CTA>
+        <Connections>
+          {totalConnections}
           {' '}
-          Estudar
-        </Link>
-        <Link to="/teach">
-          <img src={classesIconSource} alt="classes" />
-          Ensinar
-        </Link>
-      </CTA>
-      <Connections>
-        Mais de 200 pessoas já se inscreveram
-        {' '}
-        <img src={heartIconSource} alt="heart" />
-      </Connections>
-    </Content>
-  </Container>
-);
+          pessoas já se inscreveram
+          {' '}
+          <img src={heartIconSource} alt="heart" />
+        </Connections>
+      </Content>
+    </Container>
+  );
+};
 
 export default Landing;

@@ -8,9 +8,10 @@ import { Container, Content, TopBar } from './styles';
 
 interface HeaderProps {
   title: string;
+  description?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, children }) => (
+const Header: React.FC<HeaderProps> = ({ title, description, children }) => (
   <Container>
     <TopBar>
       <Link to="/">
@@ -20,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ title, children }) => (
     </TopBar>
     <Content>
       <strong>{title}</strong>
+      {description && <p>{description}</p>}
       {children}
     </Content>
   </Container>

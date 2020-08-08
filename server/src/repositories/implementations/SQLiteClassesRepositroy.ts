@@ -30,11 +30,22 @@ export class SQLiteClassesRepository implements IClassesRepository {
     }
   }
 
-  async index(): Promise<Class[]> {
+  async filter(subject: string, weekDay: number, time: number): Promise<Class[]> {
 
     const classes = await db('Class')
+      .whereExists(function () {
+        this.select('Schedule.*')
+          .from('Schedule')
+          .whereRaw('`Schedule`.`classId` = `Class`.`id`')
+          .whereRaw('`Schedule`.`weekDay` = ??', [weekDay])
+          .whereRaw('`Schedule`.`from` <= ??', [time])
+          .whereRaw('`Schedule`.`to` > ??', [time]);
+      })
+      .where('Class.subject', '=', subject)
       .join('User', 'Class.userId', 'User.id')
       .select('Class.*', 'User.*');
+
+
     return classes.map((class_) => (
       new Class(
         {
