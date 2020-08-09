@@ -22,5 +22,11 @@ const Title = styled.Text`
   margin-vertical: 40px;
 `;
 
+const TitleGroup = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
 
-export { Container, TopBar, Title };
+
+export { Container, TopBar, Title, TitleGroup };

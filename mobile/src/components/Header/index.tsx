@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
-import { Container, TopBar, Title } from './styles';
+import { Container, TopBar, Title, TitleGroup } from './styles';
 
 import backIcon from '../../assets/images/icons/back.png';
 import logoImg from '../../assets/images/logo.png';
@@ -10,9 +10,10 @@ import { useNavigation } from '@react-navigation/native';
 
 interface HeaderProps {
   title: string;
+  filter?: ReactNode;
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({ title, filter, children }) => {
 
   const { navigate } = useNavigation();
 
@@ -24,8 +25,11 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
         </BorderlessButton>
         <Image source={logoImg} resizeMode="contain" />
       </TopBar>
-      <Title>{title}</Title>
-
+      <TitleGroup>
+        <Title>{title}</Title>
+        {filter}
+      </TitleGroup>
+      {children}
     </Container>
   );
 };

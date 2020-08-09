@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Container,
@@ -14,12 +14,21 @@ import {
 
 import landingImage from '../../assets/images/landing.png';
 import studyIcon from '../../assets/images/icons/study.png';
-import giveClassesIcon from '../../assets/images/icons/give-classes.png'
-import heartIcon from '../../assets/images/icons/heart.png'
+import giveClassesIcon from '../../assets/images/icons/give-classes.png';
+import heartIcon from '../../assets/images/icons/heart.png';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import api from '../../services/api';
 
 const Landing: React.FC = () => {
+
+  const [totalConnections, setTotalConnections] = useState(0);
+
+  useEffect(() => {
+    api.get('connections').then(((response) => {
+      setTotalConnections(response.data.total);
+    }));
+  }, []);
 
   const { navigate } = useNavigation();
 
@@ -41,11 +50,11 @@ const Landing: React.FC = () => {
         </SecondaryButton>
       </ButtonsContainer>
       <TotalConnection>
-        Total de 285 inscrições já registadas {' '}
+        Total de {totalConnections} inscrições já registadas {' '}
         <Image source={heartIcon} />
       </TotalConnection>
     </Container>
   );
-}
+};
 
 export default Landing;

@@ -5,4 +5,10 @@ const Container = styled.View`
   background-color: #f0f0f7;
 `;
 
-export { Container }
+const List = styled.ScrollView`
+  margin-top: -40px;
+  padding-horizontal: 16px;
+`;
+
+
+export { Container, List };
