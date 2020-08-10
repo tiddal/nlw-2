@@ -1,5 +1,7 @@
 # Proffy - Next Level Week #02
 
+<img src="https://raw.githubusercontent.com/tiddal/nlw-2/master/.github/banner.png" />
+
 ## A plataforma de estudos online
 
 ### Tabela de conteúdos
